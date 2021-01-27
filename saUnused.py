@@ -10,7 +10,7 @@ def main():
     Central brain of the script. Executes other functions.
     """
 
-    # Generate a list of project_ids in the GCP Organization
+    # Generate a list of project numbers in the GCP Organization
     project_numbers = get_projects()
     
     # Takes the project numbers and finds the inactive service accounts
