@@ -4,12 +4,12 @@ Crawls your GCP Organization and returns service accounts that have not been use
 
 ## Requirements
 * python 3.x
-* GCP Recommender API (enabled in your prpjects)
+* GCP Recommender API (enabled in your projects)
 
 ## Installation
 ```bash
 # Clone the repo locally
-git clone git@github.com:ScaleSec/gcp_sa_inactivelister.git
+git clone git@github.com:ScaleSec/gcp_sa_lister.git
 
 # Configure virtual environment
 python3 -m venv ./venv/
