@@ -24,7 +24,7 @@ def get_sa_insights(project_numbers):
     recommender_client = recommender.RecommenderClient()
 
     findings=[]
-    # Iterate through project IDs to generate SA findings per project
+    # Iterate through project nums to generate SA findings per project
     for project_num in project_numbers:
         try:
             sa_insights = recommender_client.list_insights(parent=f"projects/{project_num}/locations/global/insightTypes/google.iam.serviceAccount.Insight")
@@ -61,7 +61,7 @@ def get_projects():
 
         request = service.projects().list_next(request, response)
 
-    # For each project, extract the project ID
+    # For each project, extract the project number
     project_numbers = []
     for project in projects:
         project_num = project['projectNumber']
