@@ -27,4 +27,8 @@ python3 saUnused.py
 
 ## Results
 
-The results will be in JSON format and include the service account email and project number. You need to have the Recommender service (API) enabled across your projects with insights pre-existing.
+The results will be in JSON format and include the service account email and project number. 
+
+## Disclaimer
+
+You need to have the Recommender service (API) enabled across your projects with insights pre-existing. For directions on enabling the API visit the [documentation](https://cloud.google.com/recommender/docs/enabling).
