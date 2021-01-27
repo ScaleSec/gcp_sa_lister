@@ -12,7 +12,8 @@ def main():
 
     # Generate a list of project_ids in the GCP Organization
     project_numbers = get_projects()
-
+    
+    # Takes the project numbers and finds the inactive service accounts
     get_sa_insights(project_numbers)
 
 def get_sa_insights(project_numbers):
