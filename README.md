@@ -1,4 +1,4 @@
-# gcp_sa_inactivelister
+# GCP Inactive Service Account Lister
 
 Crawls your GCP Organization and returns service accounts that have not been used in the past 90 days.
 
@@ -27,4 +27,4 @@ python3 saUnused.py
 
 ## Results
 
-The results will be in JSON format and include the service account email and project number.
+The results will be in JSON format and include the service account email and project number. You need to have the Recommender service (API) enabled across your projects with insights pre-existing.
