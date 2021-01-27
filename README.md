@@ -1,6 +1,6 @@
 # GCP Inactive Service Account Lister
 
-Crawls your GCP Organization and returns service accounts that have not been used in the past 90 days.
+Crawls your GCP Organization and returns service accounts that have not been used in the past 90 days based on GCP Recommender Service Account Insight [findings](https://cloud.google.com/iam/docs/managing-insights).
 
 ## Requirements
 * python 3.x
