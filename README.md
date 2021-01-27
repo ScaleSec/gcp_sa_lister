@@ -3,8 +3,8 @@
 Crawls your GCP Organization and returns service accounts that have not been used in the past 90 days.
 
 ## Requirements
-python 3.x
-GCP Recommender API (enabled in your prpjects)
+* python 3.x
+* GCP Recommender API (enabled in your prpjects)
 
 ## Installation
 ```bash
