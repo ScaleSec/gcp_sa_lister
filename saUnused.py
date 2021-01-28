@@ -4,6 +4,8 @@ import json
 import requests # pylint: disable=import-error
 from google.cloud import recommender
 import googleapiclient.discovery # pylint: disable=import-error
+from google.api_core import exceptions
+import sys
 
 def main():
     """
@@ -28,8 +30,9 @@ def get_sa_insights(project_numbers):
     for project_num in project_numbers:
         try:
             sa_insights = recommender_client.list_insights(parent=f"projects/{project_num}/locations/global/insightTypes/google.iam.serviceAccount.Insight")
-        except:
-            print("Could not list insights. Check your permissions.")
+        except exceptions.PermissionDenied as perm:
+            print(f"{perm}")
+            sys.exit(1)
         for insight in sa_insights:
             email = insight.content["email"]
             inactive_sa = json.dumps(
