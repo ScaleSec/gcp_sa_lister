@@ -32,7 +32,7 @@ def get_sa_insights(project_numbers):
             sa_insights = recommender_client.list_insights(parent=f"projects/{project_num}/locations/global/insightTypes/google.iam.serviceAccount.Insight")
         except exceptions.PermissionDenied as perm:
             print(f"{perm}")
-            sys.exit(1)
+            continue
         for insight in sa_insights:
             email = insight.content["email"]
             inactive_sa = json.dumps(
