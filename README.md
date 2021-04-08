@@ -4,7 +4,8 @@ Crawls your GCP Organization and returns service accounts that have not been use
 
 ## Requirements
 * python 3.x
-* GCP Recommender API (enabled in your projects)
+* GCP Recommender API (enabled in your project)
+  * To enable: `gcloud services enable recommender.googleapis.com`
 
 ## Installation
 ```bash
