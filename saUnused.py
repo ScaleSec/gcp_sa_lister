@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 import json
-import requests # pylint: disable=import-error
+import requests  # pylint: disable=import-error
 from google.cloud import recommender
-import googleapiclient.discovery # pylint: disable=import-error
+import googleapiclient.discovery  # pylint: disable=import-error
 from google.api_core import exceptions
 import sys
+
 
 def main():
     """
@@ -14,9 +15,10 @@ def main():
 
     # Generate a list of project numbers in the GCP Organization
     project_numbers = get_projects()
-    
+
     # Takes the project numbers and finds the inactive service accounts
     get_sa_insights(project_numbers)
+
 
 def get_sa_insights(project_numbers):
     """
@@ -25,21 +27,22 @@ def get_sa_insights(project_numbers):
     # Create IAM Recommender client
     recommender_client = recommender.RecommenderClient()
 
-    findings=[]
+    findings = []
     # Iterate through project nums to generate SA findings per project
     for project_num in project_numbers:
         try:
-            sa_insights = recommender_client.list_insights(parent=f"projects/{project_num}/locations/global/insightTypes/google.iam.serviceAccount.Insight")
+            sa_insights = recommender_client.list_insights(
+                parent=f"projects/{project_num}/locations/global/insightTypes/google.iam.serviceAccount.Insight"
+            )
             for insight in sa_insights:
-            if insight.insight_subtype == "SERVICE_ACCOUNT_USAGE":
-                email = insight.content["email"]
-                inactive_sa = json.dumps(
-                    { "service_account_email" : email, 
-                    "project_number" : project_num }
-                )
-                print(inactive_sa)
-            else:
-                continue
+                if insight.insight_subtype == "SERVICE_ACCOUNT_USAGE":
+                    email = insight.content["email"]
+                    inactive_sa = json.dumps(
+                        {"service_account_email": email, "project_number": project_num}
+                    )
+                    print(inactive_sa)
+                else:
+                    continue
         except exceptions.PermissionDenied as perm:
             print(f"{perm}")
         except Exception as e:
@@ -64,17 +67,17 @@ def get_projects():
     while request is not None:
         response = request.execute()
 
-        projects.extend(response.get('projects', []))
+        projects.extend(response.get("projects", []))
 
         request = service.projects().list_next(request, response)
 
     # For each project, extract the project number
     project_numbers = []
     for project in projects:
-        project_num = project['projectNumber']
+        project_num = project["projectNumber"]
 
         project_numbers.append(project_num)
-    
+
     return project_numbers
 
 
@@ -82,7 +85,8 @@ def create_service():
     """
     Creates the GCP Cloud Resource Service
     """
-    return googleapiclient.discovery.build('cloudresourcemanager', 'v1')
+    return googleapiclient.discovery.build("cloudresourcemanager", "v1")
+
 
 if __name__ == "__main__":
     main()
